@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Like Post App</title>
+</head>
+<body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+ 
+    {% for post in posts %}
+    <h3>{{ forloop.counter }}) {{ post.post_heading }}</h3>
+    <p>{{ post.post_text }} </p>
+    <p id="message{{post.id}}"></p>
+    <button id="like{{post.id}}" name="like{{post.id}}" value="{{post.id}}">LIKE this  </button>
+
+    <button id="comment{{post.id}}" name="comment{{post.id}}" value="comment{{post.id}}">Your Comment  </button>
+    <br><br>
+
+
+
+  <textarea name="mycomment" rows="3" cols="50">The cat was playing in the garden.</textarea>
+  <br>
+   <a id="sub{{post.id}}" href="{% url 'orders:commentpost' post.id %}" class="btn btn-primary">Submit My Comment</a>
+   <div id=subcomment{{post.id}} value='{{post.id}}'>submit comment</div>
+   <div id=substatus{{post.id}} value='{{post.id}}'>status</div>
+   <script type="text/javascript"> 
+
+        $("div").click(function() {
+         var fired_btn = $(this).html()
+
+         
+         alert(fired_btn);
+         var myid={{post.id}};
+         alert(myid);
+
+
+    $.ajax(
+    {
+        type:"POST",
+        url: "ajax2/",
+        data:{
+                 post_id: fired_btn
+        },
+        success: function( data ) 
+        {
+         alert(data['stock']);
+            $( '#message'.concat(fired_btn)).html( "<span style='background:red' > <b>Like this~~</b></span>");
+        }
+     })
+});
+
+
+    </script>
+  {% endfor %}
+<br>
+
+
+<script>
+  $("button").click(function() {
+    var fired_button = $(this).val();
+    alert(fired_button);
+    $(document).ready(function () {
+    if ($("textarea").value !== "") {
+        alert($("textarea").value);
+    }
+
+});
+    $.ajax(
+    {
+        type:"POST",
+        url: "ajax2/",
+        data:{
+                 post_id: fired_button
+        },
+        success: function( data ) 
+        {
+         alert(data['stock']);
+            $( '#message'.concat(fired_button)).html( "<span style='background:red' > <b>Like this~~</b></span>");
+        }
+     })
+});
+
+  
+</script>
+
+</body>
+</html>

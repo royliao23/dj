@@ -1,0 +1,7 @@
+Django==2.2.3
+psycopg2>=2.7,<3.0
+Pillow==6.1.0
+paypal==1.2.5
+djangorestframework==3.10.3
+stripe==2.36.2
+

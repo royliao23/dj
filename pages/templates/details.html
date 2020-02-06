@@ -1,0 +1,35 @@
+
+{% load static %}
+
+{% block tit %}
+Welcome to Visit Roy Home Page!
+{% endblock %}
+
+
+{%block content%}
+
+<h3><a href={% url 'editpost' musician.id %}>update</a>
+<a href={% url 'deletepost' musician.id %}>delete</a><h3>
+</br>
+ {{redirect}}
+</br></br>
+</h3>
+</h3>
+
+	  <image src="/media/{{musician.pic}}" class="d-block w-100" width=300 height=300 alt="...">
+  <br>
+
+ 
+
+
+ My ID is: {{musician.id}}<br>
+        My first name is: {{musician.first_name}}<br>
+        My instrument is: {{musician.instrument}}
+
+
+
+    
+
+
+
+{% endblock %}

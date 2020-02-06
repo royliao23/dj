@@ -1,0 +1,56 @@
+
+{% load static %}
+
+{% block tit %}
+Welcome to Visit Roy Home Page!
+{% endblock %}
+
+
+{%block content%}
+
+
+   <div class="container">
+      <div class="row" >
+
+
+              <div class="row">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="col-md-6 text-right">
+                            <image src="/media/{{product.pic}}" class="d-block w-100" width=300 height=350 alt="...">
+                        </div>
+                        <div class="col-md-6" style="padding-left: 20px">
+                            <h3>{{ product.name}}
+                           
+                            <p class="text-muted">Price {{ product.price }}</p>
+                            <form action="{% url "cart:cart_add" product.id %}" method="post">
+                                {% csrf_token %}
+                                {% for field in cart_product_form %}
+                                    <div class="form_group">
+                                        <div class="col-sm-offset-2 col-sm-10">
+                                          <span class="text-danger small">{{field.errors}}</span>
+                                        </div>
+                                           <label class="control-label col-sm-2">
+                                              {{field.label_tag}}
+                                           </label>
+                                        <div class="col-sm-10"> {{field}}</div>
+     
+                                        </div>
+                                {% endfor %}
+                                <input type="submit" value="add to cart" class="btn btn-primary">
+                            </form>
+                            <p>{{ product.description|safe|linebreaksbr }}</p>
+                        </div>
+                    </div>
+                </div>
+              </div>
+
+
+    
+
+        </div><!-- /.blog-main -->
+
+
+    </div><!-- /.container -->
+
+{% endblock %}

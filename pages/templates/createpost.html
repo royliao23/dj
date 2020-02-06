@@ -1,0 +1,51 @@
+<head>
+<title>Create a Post </title>
+</head>
+
+<body>
+<h2>Customer Information </h2>
+
+<form action="" method="POST">
+{% csrf_token %}
+
+First name:<br>
+<input type="text" name="first_name"  >
+<br>
+Last name:<br>
+<input type="text" name="last_name">
+<br>Delivery Address:<br>
+<input type="text" name="address" >
+<br>
+Email:<br>
+<input type="text" name="email">
+<br>Mobile:<br>
+<input type="text" name="mobile" >
+<br>
+
+Delivery-all delivery will be $10<br>
+
+  <select name="delivery">
+    <option value="tnt">tnt</option>
+    <option value="toll">toll</option>
+   
+  </select>
+<br>
+
+Payment method<br>
+
+  <select name="payment">
+    <option value="cash">tnt</option>
+    <option value="paypal">toll</option>
+   
+  </select>
+
+  
+<br>
+Note for this transaction:<br>
+<input type="text" name="note">
+<input type="submit" value="Submit"/>
+</form>
+{{ss}}
+</body>
+
+</html>

@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block tit %}
+Welcome to Visit Roy Home Page!
+{% endblock %}
+
+
+{%block content%}
+ 
+<style >
+  .container { font-size: 0; }
+.container div { display: inline-block; font-size: 12px; margin-left: 10px; margin-top: 10px;marker-start: 0}
+ 
+</style>
+
+<div class="container">
+      {% for  all_products in all_products %}
+
+    
+        <span>
+        <a href={% url 'pages:productdetail' all_products.id %}><image src="/media/{{all_products.pic}}" class="d-block w-15" width=255 height=270 alt="..."></image></a>
+        </span>
+        <a href={% url 'pages:productdetail' all_products.id %}>{{all_products.p_name}}</a>	{{all_products.price}}
+    
+
+       {% endfor %}
+</div>
+
+{% endblock %}

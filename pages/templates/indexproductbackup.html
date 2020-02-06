@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block tit %}
+{% block title %}
+    {% if category %}{{ category.name }} {% else %} Products {% endif %}
+{% endblock %}
+{% endblock %}
+
+
+{%block content%}
+ 
+<style >
+  .container { font-size: 0; }
+.container div { display: inline-block; font-size: 12px; margin-left: 0px; margin-top: 10px;marker-start: 0}
+ 
+</style>
+
+<div class="container">
+      {% for  all_products in all_products %}
+      <div id=content">
+    
+        <span>
+        <a href={% url 'pages:productdetail' all_products.id %}><image src="/media/{{all_products.pic}}" class="d-block w-15" width=255 height=270 alt="..."></image></a>
+        </span><a href={% url 'pages:productdetail' all_products.id %}>{{all_products.p_name}}</a>	{{all_products.price}}
+    
+       </div>
+       {% endfor %}
+</div>
+
+<div class="container">
+      {% for  all_products in products %}
+      <div id=content">
+    
+        <span>
+        <a href={% url 'pages:productdetail' all_products.id %}><image src="/media/{{all_products.pic}}" class="d-block w-15" width=255 height=270 alt="..."></image></a>
+        </span><a href={% url 'pages:productdetail' all_products.id %}>{{all_products.p_name}}</a>	{{all_products.price}}
+    
+       </div>
+       {% endfor %}
+</div>
+
+ 
+
+     
+     
+
+       
+
+
+
+
+{% endblock %}

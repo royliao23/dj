@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block tit %}
+Welcome to Visit Roy Home Page!
+{% endblock %}
+
+
+{%block content%}
+ 
+<style >
+  .container { font-size: 0; }
+.container div { display: inline-block; font-size: 12px; margin-left: 10px; margin-top: 10px;marker-start: 0}
+ 
+</style>
+
+
+
+ <img src="{% static 'images/p2.jpg' %}" class="d-block w-100" alt="...">
+<h3><a href={% url 'home' %}>Back to Home</a></h3>
+</br>
+</br>
+<div class="container">
+      {% for  musician in all_musicians %}
+      <div id=content">
+    
+        <span>
+        <image src="/media/{{musician.pic}}" class="d-block w-15" width=255 height=260 alt="..."></image>
+        </span><a href={% url 'mid' musician.id %}>{{musician.first_name}}</a>	{{musician.last_name}}	{{musician.instrument}}
+    
+       </div>
+       {% endfor %}
+</div>
+     
+     
+
+       
+
+
+
+ {{ mybrother.namer }}
+{% endblock %}

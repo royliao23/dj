@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Like Post App</title>
+</head>
+<body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+
+ 
+    {% for post in posts %}
+
+
+    <h3>{{ forloop.counter }}) {{ post.post_heading }} </h3>
+      
+        {% for detail in post.likes.all %}      
+              
+             {% if  detail.post_text2 == "like" %}
+             
+        Yeh, you like it!!
+            {% else %}
+                <p>{{ detail.post_text2 }} </p>
+            {% endif%}
+               
+        {% endfor %}
+
+
+
+ 
+<div id="likemessage" style="height: 30px; color:green">  {{ post.lk }} People Like So Far!<image style="height: 30px" src='\media\likeimg.png'></div>
+
+    <p id="message{{post.id}}"></p>
+    <textarea id="mycomment{{post.id}}" rows="3" cols="50">My comment:</textarea>
+    <br>
+    <button id="like{{post.id}}" name="like{{post.id}}" value="{{post.id}}">Your Comment  </button>
+
+    <button id="comment{{post.id}}" name="comment{{post.id}}" value="{{post.id}}">Like </button>
+    <br><br>
+    
+    
+  
+  
+  {% endfor %}
+
+  
+<br>
+
+
+<script>
+    
+  $("button").click(function() {
+    
+    var fired_button = $(this).val();
+    alert(fired_button);
+    var fired_text = $(this).text();
+    alert(fired_text);
+    var thecomment=$('#mycomment'.concat(fired_button)).val();
+    //var thelike=$('#comment'.concat(fired_button)).val();
+    //alert(thelike);
+    
+    $.ajax(
+    {
+        type:"POST",
+        url: "ajax2/",
+
+        data:{
+                 post_id: fired_button, thecomment: thecomment, thetext: fired_text
+        },
+        success: function( data ) 
+        {
+         alert(data['stock']);
+         alert('thecomment:'+data['thecomment']);
+         alert('thelike:'+data['likenum']);
+
+        $( '#message'.concat(fired_button)).html( "<span style='background:red' > <b>Like this~~</b></span>");
+
+       
+        location.reload();
+        }
+     })
+});
+
+  
+</script>
+
+</body>
+</html>

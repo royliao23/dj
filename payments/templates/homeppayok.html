@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    Your Shopping Cart| Checkout
+{% endblock %}
+
+{% block content %}
+<style>
+.container {
+  width: 1000px;
+  clear: both;
+}
+
+.container input {
+  width: 100%;
+  clear: both;
+}
+ 
+</style>
+
+
+<h2>Order</h2>
+<form action="{% url 'payments:charge' %}" method="post">
+  {% csrf_token %}
+  <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+          data-key="pk_test_fBgqSs4c818IP0JbscIlkSAy00x06h7EGB"
+          data-description="Payment Information"
+          data-amount="1438"
+          data-locale="auto"></script>
+</form>
+<div id='back'>
+{% if status  %}
+  <P><strong>{{status}}</strong></P>
+  
+  {% else %}
+  <P><strong>Oops, your payment is NOT processed!</strong></P>
+  {% endif %}
+
+
+
+
+</div>
+
+
+
+
+    
+{% endblock %}
+
+
+
+

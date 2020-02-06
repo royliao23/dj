@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block tit %}
+Welcome to Visit Roy Home Page!
+{% endblock %}
+
+
+
+{%block content%}
+ <img src="{% static 'images/p2.jpg' %}" class="d-block w-100" alt="...">
+<h3><a href={% url 'home' %}>Back to Home</a></h3>
+{{redirect}}
+  {% if errormsg  %}
+  <P><strong>{{errormsg}}</strong></P>
+  {% endif %}
+  <form action="{% url 'indexf' %}" method="post">
+    {% csrf_token %}
+    {% for  musician in all_musicians %}
+       
+       <input type="radio" name="musician" id="musician{{forloop.counter}}" value="{{musician.id}}">
+
+       <label for="musician{{forloop.counter}}">
+         {{musician.first_name}}
+         {% if musician.isf  %}
+          <img src="{% static 'images/g.png' %}">
+
+         {% endif %}
+       </label>
+        </br>
+     
+    {% endfor %}
+        </br>
+    <input type="submit" name="submit" value="Favorite">
+  </form>
+
+  
+
+  {% endblock %}

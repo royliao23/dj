@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block tit %}
+Welcome to Visit Roy Home Page!
+{% endblock %}
+
+
+{%block content%}
+
+<h3><a href={% url 'home' %}><< Back to Home</a><h3></h3>
+</br>
+ {{redirect}}
+</br></br>
+</h3>
+</h3>
+<ui>
+   
+     
+  
+        My ID is: {{musician.id}}<br>
+        My first name is: {{musician.first_name}}<br>
+        My instrument is: {{musician.instrument}}
+
+
+
+    
+</ui>
+
+
+{% endblock %}

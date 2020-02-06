@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block tit %}
+{% block title %}
+   Products 
+{% endblock %}
+{% endblock %}
+
+
+{%block content%}
+ 
+<style >
+  .container { font-size: 0; }
+.container div { display: inline-block; font-size: 12px; margin-left: 0px; margin-top: 10px;marker-start: 0}
+ 
+</style>
+
+<div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+          <div class="sidebar-module">
+            <h6>Categories</h6>
+            <ol class="list-unstyled">
+              <li style=" float: left;display: block;
+  color: white;
+  text-align: center;
+  padding: 6px;
+  text-decoration: none " {% if not category %} class="active"{% endif %}><a href='/list' ><span> All </span></a></li>
+            {% for c in categories %}
+
+              <li style=" float: left; display: block;
+  color: white;
+  text-align: center;
+  padding: 6px;
+  text-decoration: none" {% if category.slug == c.slug %} class="active"{% endif %}>
+                  <a href="{{ c.get_absolute_url }}"> <span> {{ c.name }} </span> </a>
+              </li>
+            {% endfor %}
+            </ol>
+          </div>
+</div><!-- blog-sidebar -->
+
+
+<div class="container">
+      {% for  all_products in all_products %}
+      <div id=content">
+    
+        <span>
+        <a href={% url 'pages:productdetail' all_products.id %}><image src="/media/{{all_products.pic}}" class="d-block w-15" width=255 height=270 alt="..."></image></a>
+        </span><a href={% url 'pages:productdetail' all_products.id %}>{{all_products.p_name}}</a>	{{all_products.price}}
+    
+       </div>
+       {% endfor %}
+</div>
+
+<div class="container">
+      {% for  all_products in products %}
+      <div id=content">
+    
+        <span>
+        <a href={% url 'pages:productdetail' all_products.id %}><image src="/media/{{all_products.pic}}" class="d-block w-15" width=255 height=270 alt="..."></image></a>
+        </span><a href={% url 'pages:productdetail' all_products.id %}>{{all_products.p_name}}</a>	{{all_products.price}}
+    
+       </div>
+       {% endfor %}
+</div>
+
+ 
+
+     
+     
+
+       
+
+
+
+
+{% endblock %}
